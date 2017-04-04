@@ -9,6 +9,9 @@ var testlist = [
   },
   {
     question: "Вопрос № 3"
+  },
+  {
+    question: "Вопрос № 4"
   }
 ]
 
@@ -20,6 +23,9 @@ testlist[1].correct = [2,3];
 
 testlist[2].answers = ["Вариант ответа № 1", "Вариант ответа № 2", "Вариант ответа № 3"];
 testlist[2].correct = [1];
+
+testlist[3].answers = ["Вариант ответа № 1", "Вариант ответа № 2"];
+testlist[3].correct = [1];
 
 
 
@@ -37,6 +43,10 @@ var c = JSON.parse(b)
 
 console.log(c);
 
+var qaItem = [];
+var checkbox = [];
+var paragraph = [];
+
 var wrapper = document.createElement("form");
 wrapper.className = "pure-form-stacked";
 wrapper.style.padding = "50px";
@@ -46,15 +56,19 @@ header.innerHTML = "Тест по программированию";
 header.style.margin = "0 0 50px 0";
 header.style.textAlign = "center";
 
-var qaItem = [];
-var checkbox = [];
-var paragraph = [];
-
-var submitButton = document.createElement('button');
+var submitButton = document.createElement("button");
 submitButton.type = "submit";
 submitButton.className = "pure-button pure-button-primary";
 submitButton.innerHTML = "Проверить мои результаты";
 submitButton.style.margin = "50px 0 0 0";
+submitButton.addEventListener("click", revision);
+
+
+function revision() {
+
+};
+
+
 
 document.body.appendChild(wrapper);
 wrapper.appendChild(header);
@@ -75,18 +89,11 @@ for (var i = 0; i < c.length; i++) {
     checkbox[j].className = "pure-checkbox";
     checkbox[j].style.margin = "10px 10px 10px 0";
 
-    console.log(paragraph);
     wrapper.appendChild(paragraph[j]);
     paragraph[j].appendChild(checkbox[j]);
     paragraph[j].appendChild(text);
 
   });
-// //
-// //
-// //
-// //   }
-// // }
-//
 }
 
 wrapper.appendChild(submitButton);
