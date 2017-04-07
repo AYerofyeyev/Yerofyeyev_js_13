@@ -92,15 +92,17 @@ function revision() {
   // Проверка ответов
   if (check.join(",") === a.join(",")) {
     alert("Молодец!");
+    location.reload()
     return;
   }
   alert("Тест не пройден");
+  location.reload()
   return;
 };
 
 // Функция обнуления
 
-// function 
+// function
 
 // Помещение элемнтов на страницу
 
