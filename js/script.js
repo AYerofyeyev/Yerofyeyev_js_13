@@ -98,6 +98,10 @@ function revision() {
   return;
 };
 
+// Функция обнуления
+
+// function 
+
 // Помещение элемнтов на страницу
 
 document.body.appendChild(wrapper);
