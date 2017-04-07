@@ -10,9 +10,6 @@ var testlist = [
   },
   {
     question: "Вопрос № 3"
-  },
-  {
-    question: "Вопрос № 4"
   }
 ]
 
@@ -24,9 +21,6 @@ testlist[1].correct = [2, 3];
 
 testlist[2].answers = ["Вариант ответа № 1", "Вариант ответа № 2", "Вариант ответа № 3"];
 testlist[2].correct = [1];
-
-testlist[3].answers = ["Вариант ответа № 1", "Вариант ответа № 2"];
-testlist[3].correct = [1];
 
 // преобразование и запись в localStorage
 
@@ -53,6 +47,7 @@ var checkbox = [];
 var paragraph = [];
 var check = [];
 var a = [];
+var result = "";
 
 // Создание DOM элементов
 
@@ -72,6 +67,34 @@ submitButton.value = "Проверить мои результаты";
 submitButton.style.margin = "50px 0 0 0";
 submitButton.addEventListener("click", revision);
 
+// Создание модального окна
+
+var modalWrapper = document.createElement("div");
+modalWrapper.style.background = "rgba(0,0,0,.25)";
+modalWrapper.style.position = "absolute";
+modalWrapper.style.height = "100%";
+modalWrapper.style.width = "100%";
+
+var modal = document.createElement("aside");
+modal.id = "modal";
+modal.style.left = "25%";
+modal.style.background = "#fff";
+modal.style.margin = "-250px 0 0 -40px";
+modal.style.position = "absolute";
+modal.style.padding = "20px 200px";
+modal.style.top = "60%";
+modal.style.borderRadius = "5px";
+modal.style.boxShadow = "0 3px 7px rgba(0,0,0,.50)";
+modal.style.boxSizing = "border-box";
+
+var modalHeader = document.createElement("h2");
+
+var modalButton = document.createElement("input");
+modalButton.type = "button";
+modalButton.className = "pure-button";
+modalButton.value = "Закрыть";
+modalButton.addEventListener("click", zeroed);
+
 // Функция сбора ответов и проверка на соответствие правильным
 
 function revision() {
@@ -89,20 +112,34 @@ function revision() {
     })
   })
   console.log(a);
+
   // Проверка ответов
+  
   if (check.join(",") === a.join(",")) {
-    alert("Молодец!");
-    location.reload()
+    result = "Молодец!";
+    popUp();
     return;
   }
-  alert("Тест не пройден");
-  location.reload()
+  result = "Тест не пройден";
+  popUp();
   return;
 };
 
-// Функция обнуления
+//Функция появления всплывающего окна
 
-// function
+function popUp(){
+  modalHeader.innerHTML = result;
+  document.body.insertBefore(modalWrapper, wrapper);
+  modalWrapper.appendChild(modal);
+  modal.appendChild(modalHeader);
+  modal.appendChild(modalButton);
+};
+
+// Функция обновления страницы
+
+function zeroed(){
+  location.reload();
+};
 
 // Помещение элемнтов на страницу
 
